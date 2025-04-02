@@ -1,0 +1,169 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Main Section */
+main {
+
+    display: flex;
+    padding: 80px 20px 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Vendor Controls */
+.vendor-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    /* Stack icon and name vertically */
+    align-items: center;
+    text-align: center;
+}
+
+.user-info .user-icon {
+    font-size: 20px;
+    font-weight: 900;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    /* Add space between icon and name */
+}
+
+.vendor-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+}
+
+.action-circle {
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    width: 150px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    border-radius: 30px;
+    cursor: pointer;
+    border-color: #050404;
+    border: 5px;
+    padding: 5px;
+}
+
+.action-circleis {
+    background-color: #007bff;
+    color: white;
+
+    width: 200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    border-color: #050404;
+    border: 5px;
+    padding: 5px;
+}
+.action-circle i{
+    font-size: 30px;
+    color: #fff;
+}
+.action-circleis i {
+    font-size: 30px;
+    color: #fff;
+}
+
+/* Vendor Auth */
+.vendor-auth {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+/* Footer */
+footer {
+
+    position: fixed;
+    /* Fix the footer at the bottom */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    justify-content: flex-start;
+
+}
+
+footer nav {
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    height: 100%;
+    width: 25%;
+    padding: 10px;
+    margin: 3px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #ddd;
+    font-size: 20px;
+    color: #050404;
+}
+
+
+
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .product-card {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Online Shopping</title>
+    <link rel="stylesheet" href="index.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <header>
+        <div class="headis">
+            <h1>Online Shopping Platform</h1>
+        </div>
+        
+        <nav id="login">
+            
+        </nav>
+    </header>
+
+    <main>
+        <h2>Available Products</h2>
+        <div id="productsList" class="product-container"></div>
+    </main>
+
+    <footer>
+        <nav>
+            
+            <a href="index.html" class="home">
+                <i class='bx bxs-home'></i>
+                Home
+            </a>
+            <a href="cart.html" class="cart" id="cart">
+                <i class='bx bxs-cart'></i>
+                Cart
+            </a>
+            <a href="you.html" class="you" id="you">
+                <i class='bx bxs-user'></i>
+                You
+            </a>
+            
+            <a href="more.html" class="more" id="more">
+                <i class='bx bx-list-ul'></i>
+
+            </a>
+        </nav>
+    </footer>
+
+    <script>
+       
+       const login=document.getElementById("login");
+       const cart=document.getElementById("cart");
+       console.log("vinoth is",localStorage.getItem("userid"));
+       if(!localStorage.getItem("userid")||localStorage.getItem("userid")=="null"){
+            login.innerHTML=`
+              <button  class="loginUser " onclick="goToUser ()"> Login</button>
+            `;
+            
+       }
+
+        function goToUser() {
+            window.location.href = "login2.html";
+        }
+       
+       
+        
+
+        function loadProducts() {
+            fetch("http://localhost:8080/products")
+                .then(response => response.json())
+                .then(products => {
+                    const productContainer = document.getElementById("productsList");
+                    productContainer.innerHTML = "";
+                    products.forEach(product => {
+                        console.log(`Product ID: ${product.id}`); // Debugging
+
+                        const productCard = `
+                             <a href="pro.html?id=${product.id}" >
+                                <div class="product-card">
+                                    <h3>${product.name}</h3>
+                                
+                                    <p>Price: Rs.${product.price}</p>
+                                    <p>Quantity: ${product.quantity}</p>
+                                    <img src="${product.imageUrl}" alt="${product.name}">
+                                </div>
+                            </a>
+                        `;
+                        productContainer.innerHTML += productCard;
+                        
+                    });
+                })
+                .catch(error => console.error("Error:", error));
+        }
+
+        window.onload = loadProducts;
+        
+        
+    </script>
+</body>
+
+</html>

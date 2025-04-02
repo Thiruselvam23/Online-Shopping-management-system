@@ -1,0 +1,165 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    /* Stack header, main, and footer vertically */
+    min-height: 100vh;
+    /* Ensure the body takes at least the full height of the viewport */
+}
+
+/* Header styles */
+header {
+    position: fixed;
+    /* Fix the header at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* Ensure the header is above other content */
+}
+
+
+
+header h1 {
+    margin-bottom: 8px;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+/* Main content styles */
+main {
+    flex: 1;
+    /* Allow main to grow and fill available space */
+    padding: 80px 20px 20px;
+    /* Add top padding to avoid overlap with fixed header */
+    overflow-y: auto;
+    /* Enable scrolling if content overflows */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #050404;
+}
+
+/* Button styles */
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Product container styles */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Product card styles */
+.product-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 200px;
+    height: 300px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: 150px;
+    border-radius: 5px;
+}
+
+/* Footer styles */
+footer {
+
+    position: fixed;
+    /* Fix the footer at the bottom */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    justify-content: flex-start;
+
+}
+
+footer nav {
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+nav a {
+    height: 100%;
+    width: 25%;
+    padding: 10px;
+    margin: 3px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #ddd;
+    font-size: 20px;
+    color: #050404;
+}
+
+
+
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .product-card {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}

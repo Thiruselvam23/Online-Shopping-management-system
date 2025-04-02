@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Online Shopping</title>
+    <link rel="stylesheet" href="more.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <header>
+        <div class="headis">
+            <h1>Vendor Site</h1>
+        </div>
+    </header>
+
+    <main>
+        
+        <div class="vendor-controls" id="vendorControls">
+            
+            <div class="user-info">
+                <h2>Vendor Actions</h2>
+                <div class="user-icon">
+                    <span id="userInitial">G</span> <!-- Placeholder for the user's initial -->
+                </div>
+                <div class="user-id" id="userIdDisplay">Guest</div> <!-- Placeholder for the user ID -->
+            </div>
+
+            <div class="actions">
+                <div class="action-circle" onclick="logout()">
+                    <i class='bx bxs-log-out'></i>
+                    <span>Logout</span>
+                </div>
+                <div class="action-circle" onclick="addProduct()">
+                    <i class='bx bxs-plus-circle'></i>
+                    <span>Add Product</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="vendorAuth" class="vendor-auth">
+            <div class="action-circleis" onclick="goToVendorLogin()">
+                <i class='bx bxs-user'></i>
+                <span>Vendor Login</span>
+            </div>
+            <div class="action-circleis" onclick="goToVendorRegistration()">
+                <i class='bx bxs-user-plus'></i>
+                <span>Vendor Registration</span>
+            </div>
+        </div>
+
+        <div id="productsList" class="product-container"></div>
+    </main>
+
+    <footer>
+        <nav>
+            <a href="index.html" class="home">
+                <i class='bx bxs-home'></i> Home
+            </a>
+            <a href="cart.html" class="cart">
+                <i class='bx bxs-cart'></i> Cart
+            </a>
+            <a href="you.html" class="you">
+                <i class='bx bxs-user'></i> You
+            </a>
+            <a href="more.html" class="more">
+                <i class='bx bx-list-ul'></i>
+            </a>
+        </nav>
+    </footer>
+
+    <script>
+        const userId = localStorage.getItem("vendorid");
+        const userInitial = document.getElementById("userInitial");
+        const userIdDisplay = document.getElementById("userIdDisplay");
+        const vendorControls = document.getElementById("vendorControls");
+        const vendorAuth = document.getElementById("vendorAuth");
+
+        if (!userId || userId === "null") {
+            vendorControls.style.display = "none"; // Hide vendor actions
+            vendorAuth.style.display = "flex"; // Show login/register options
+        } else {
+            vendorAuth.style.display = "none"; // Hide login/register
+            vendorControls.style.display = "block"; // Show vendor controls
+
+            const initial = userId.charAt(0).toUpperCase();
+            userInitial.textContent = initial;
+            userIdDisplay.textContent = userId;
+        }
+
+        function logout() {
+            localStorage.setItem("vendorid", "null");
+            window.location.href = "more.html";
+        }
+
+        function goToVendorLogin() {
+            window.location.href = "vendor-login.html";
+        }
+
+        function goToVendorRegistration() {
+            window.location.href = "vendor-register.html";
+        }
+
+        function addProduct() {
+            window.location.href = "products.html";
+        }
+    </script>
+
+</body>
+
+</html>

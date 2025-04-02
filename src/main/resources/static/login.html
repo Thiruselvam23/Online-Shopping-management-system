@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Online Shopping</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <input type="text" id="userId" placeholder="User ID" required>
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="password" id="password" placeholder="Password" required minlength="6">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="tel" id="phoneNumber" placeholder="Phone Number" required pattern="[0-9]{10}">
+            <button type="submit">Register</button>
+        </form>
+        <p id="errorMessage" class="error-message"></p>
+        <p>Already have an account? <a href="login2.html">Login</a></p>
+    </div>
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const userId = document.getElementById("userId").value.trim();
+            const username = document.getElementById("name").value.trim();
+            const password = document.getElementById("password").value;
+            const email = document.getElementById("email").value.trim();
+            const phoneNumber = document.getElementById("phoneNumber").value.trim();
+            const errorMessage = document.getElementById("errorMessage");
+
+            errorMessage.innerText = "";
+
+            // Validate phone number
+            if (!/^\d{10}$/.test(phoneNumber)) {
+                errorMessage.innerText = "Invalid phone number. Must be 10 digits.";
+                return;
+            }
+
+            try {
+                const userCheckResponse = await fetch(`http://localhost:8080/user/${userId}`);
+                if (!userCheckResponse.ok) throw new Error("Error checking user ID");
+                const userData = await userCheckResponse.json();
+
+                if (userData.exists) {
+                    errorMessage.innerText = "User ID already exists. Please choose another.";
+                    return;
+                }
+
+                const registerResponse = await fetch("http://localhost:8080/user", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ id: userId, username, password, email, phoneNumber }),
+                });
+
+                if (!registerResponse.ok) {
+                    const errorText = await registerResponse.text();
+                    throw new Error(errorText);
+                }
+
+                alert("Registration successful! Redirecting to login...");
+                window.location.href = "login2.html";
+            } catch (error) {
+                errorMessage.innerText = "Registration failed: ";
+            }
+        });
+    </script>
+</body>
+
+</html>

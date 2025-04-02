@@ -1,0 +1,245 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    /* Stack header, main, and footer vertically */
+    min-height: 100vh;
+    /* Ensure the body takes at least the full height of the viewport */
+}
+
+/* Header styles */
+header {
+    position: fixed;
+    /* Fix the header at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1000;
+    /* Ensure the header is above other content */
+}
+
+.headis {
+    display: flex;
+    flex-direction: column;
+    /* Stack user icon and user ID vertically */
+    align-items: center;
+    /* Center items horizontally */
+    width: 93%;
+}
+
+.headis .user-icon {
+    width: 50px;
+    /* Width of the circle */
+    height: 50px;
+    /* Height of the circle */
+    background-color: #28a745;
+    /* Background color for the circle */
+    border-radius: 50%;
+    /* Make it a circle */
+    display: flex;
+    justify-content: center;
+    /* Center the initial */
+    align-items: center;
+    /* Center the initial */
+    color: white;
+    /* Text color */
+    font-size: 24px;
+    /* Font size for the initial */
+    font-weight: bold;
+    /* Make the initial bold */
+    margin-bottom: 5px;
+    /* Space below the circle */
+}
+
+.user-id {
+    font-size: 14px;
+    /* Font size for the user ID */
+    color: #333;
+    /* Color for the user ID text */
+}
+
+nav {
+    margin-top: 10px;
+}
+
+/* Main content styles */
+main {
+    margin-top: 20px;
+    flex: 1;
+    /* Allow main to grow and fill available space */
+    padding: 80px 20px 20px;
+    /* Add top padding to avoid overlap with fixed header */
+    overflow-y: auto;
+    /* Enable scrolling if content overflows */
+    flex-direction: row;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #050404;
+}
+
+/* Button styles */
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Product container styles */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Product card styles */
+.product-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Order card styles */
+.order-card {
+    background-color: white;
+    /* Background color for the order card */
+    border: 1px solid #ddd;
+    /* Light border */
+    border-radius: 5px;
+    /* Rounded corners */
+    padding: 15px;
+    /* Padding inside the card */
+    width: 300px;
+    /* Fixed width for the order card */
+    text-align: left;
+    /* Align text to the left */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* Transition effects */
+    margin: 10px;
+    /* Space around each order card */
+}
+
+.order-card:hover {
+    transform: scale(1.02);
+    /* Slightly scale up on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Darker shadow on hover */
+}
+
+/* Order details styles */
+.order-card p {
+    margin: 5px 0;
+    /* Space between paragraphs */
+    font-size: 14px;
+    /* Font size for order details */
+    color: #333;
+    /* Text color */
+}
+
+/* Strong text styles for labels */
+.order-card p strong {
+    color: #007bff;
+    /* Color for labels */
+}
+
+/* Footer styles */
+footer {
+
+    position: fixed;
+    /* Fix the footer at the bottom */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    justify-content: flex-start;
+
+}
+
+footer nav {
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+nav a {
+    height: 100%;
+    width: 25%;
+    padding: 10px;
+    margin: 3px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #ddd;
+    font-size: 20px;
+    color: #050404;
+}
+
+
+
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .product-card {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}

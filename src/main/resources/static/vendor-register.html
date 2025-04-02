@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Registration</title>
+    <link rel="stylesheet" href="login2.css">
+</head>
+
+<body>
+    
+    <form id="registerForm">
+        <h2>Vendor Registration</h2>
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <input type="text" id="phoneNumber" placeholder="Phone Number" required>
+        <button type="submit">Register</button>
+        <p>Already have an account? <a href="vendor-login.html">Login here</a></p>
+        <p id="errorMessage" style="color: red;"></p>
+    </form>
+
+    
+    
+
+
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            
+              
+              const  vendorname= document.getElementById("name").value;
+              const  email= document.getElementById("email").value;
+               const password= document.getElementById("password").value;
+               const phonenumber= document.getElementById("phoneNumber").value;
+            
+            
+
+            fetch("http://localhost:8080/vendor", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    vendorid: vendorname,
+                    password: password,
+                    email: email,
+                    phoneNumber: phonenumber,
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => { throw new Error(text); });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert("register successful: " + JSON.stringify(data));
+                    window.location.href = "index.html";
+                })
+                .catch(error => {
+                    document.getElementById("errorMessage").innerText = "register failed: " + error.message;
+                });
+        });
+    </script>
+</body>
+
+</html>
