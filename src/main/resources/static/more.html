@@ -1,54 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Online Shopping</title>
+    <title>Vendor Dashboard</title>
     <link rel="stylesheet" href="more.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
 <body>
     <header>
-        <div class="headis">
-            <h1>Vendor Site</h1>
-        </div>
+        <h1>🌟 Welcome, Vendor! 🌟</h1>
     </header>
 
     <main>
-        
         <div class="vendor-controls" id="vendorControls">
-            
-            <div class="user-info">
-                <h2>Vendor Actions</h2>
-                <div class="user-icon">
-                    <span id="userInitial">G</span> <!-- Placeholder for the user's initial -->
-                </div>
-                <div class="user-id" id="userIdDisplay">Guest</div> <!-- Placeholder for the user ID -->
-            </div>
-
-            <div class="actions">
-                <div class="action-circle" onclick="logout()">
-                    <i class='bx bxs-log-out'></i>
-                    <span>Logout</span>
-                </div>
-                <div class="action-circle" onclick="addProduct()">
-                    <i class='bx bxs-plus-circle'></i>
-                    <span>Add Product</span>
+            <div class="glass-card">
+                <div class="user-icon" id="userInitial">👤</div>
+                <div class="vendor-name" id="userIdDisplay">Guest</div>
+                <h2>✨ Vendor Actions ✨</h2>
+                <div class="actions">
+                    <div class="action-btn logout" onclick="logout()">🚪 Logout</div>
+                    <div class="action-btn add" onclick="addProduct()">➕ Add Product</div>
                 </div>
             </div>
         </div>
 
-        <div id="vendorAuth" class="vendor-auth">
-            <div class="action-circleis" onclick="goToVendorLogin()">
-                <i class='bx bxs-user'></i>
-                <span>Vendor Login</span>
-            </div>
-            <div class="action-circleis" onclick="goToVendorRegistration()">
-                <i class='bx bxs-user-plus'></i>
-                <span>Vendor Registration</span>
-            </div>
+        <div id="vendorAuth" class="auth-panel">
+            <div class="glass-card auth-card" onclick="goToVendorLogin()">🔑 Vendor Login</div>
+            <div class="glass-card auth-card" onclick="goToVendorRegistration()">📝 Vendor Register</div>
         </div>
 
         <div id="productsList" class="product-container"></div>
@@ -56,18 +35,10 @@
 
     <footer>
         <nav>
-            <a href="index.html" class="home">
-                <i class='bx bxs-home'></i> Home
-            </a>
-            <a href="cart.html" class="cart">
-                <i class='bx bxs-cart'></i> Cart
-            </a>
-            <a href="you.html" class="you">
-                <i class='bx bxs-user'></i> You
-            </a>
-            <a href="more.html" class="more">
-                <i class='bx bx-list-ul'></i>
-            </a>
+            <a href="index.html"><i class='bx bxs-home'></i> Home </a>
+            <a href="cart.html"><i class='bx bxs-cart'></i> Cart </a>
+            <a href="you.html"><i class='bx bxs-user'></i> You </a>
+            <a href="more.html"><i class='bx bx-list-ul'></i> More </a>
         </nav>
     </footer>
 
@@ -79,14 +50,12 @@
         const vendorAuth = document.getElementById("vendorAuth");
 
         if (!userId || userId === "null") {
-            vendorControls.style.display = "none"; // Hide vendor actions
-            vendorAuth.style.display = "flex"; // Show login/register options
+            vendorControls.style.display = "none";
+            vendorAuth.style.display = "flex";
         } else {
-            vendorAuth.style.display = "none"; // Hide login/register
-            vendorControls.style.display = "block"; // Show vendor controls
-
-            const initial = userId.charAt(0).toUpperCase();
-            userInitial.textContent = initial;
+            vendorAuth.style.display = "none";
+            vendorControls.style.display = "flex";
+            userInitial.textContent = userId.charAt(0).toUpperCase();
             userIdDisplay.textContent = userId;
         }
 
@@ -107,7 +76,5 @@
             window.location.href = "products.html";
         }
     </script>
-
 </body>
-
 </html>

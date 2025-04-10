@@ -1,120 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Online Shopping</title>
-    <link rel="stylesheet" href="cart.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🛒 Cart - Online Shopping</title>
+  <link rel="stylesheet" href="cart.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
 </head>
-
 <body>
-    <header>
-        <h1>Cart</h1>
+  <header>
+    <h1>🛍️ Your Cart</h1>
+  </header>
 
-    </header>
-
-    <main>
-        <h2>Your Orders</h2>
-        <div id="productsList" class="product-container"></div>
-    </main>
-
-    <footer>
-        <nav>
+  <main>
     
-            <a href="index.html" class="home">
-                <i class='bx bxs-home'></i>
-                Home
-            </a>
-            <a href="cart.html" class="cart" id="cart">
-                <i class='bx bxs-cart'></i>
-                Cart
-            </a>
-            <a href="you.html" class="you" id="you">
-                <i class='bx bxs-user'></i>
-                You
-            </a>
-    
-            <a href="more.html" class="more" id="more">
-                <i class='bx bx-list-ul'></i>
-    
-            </a>
-        </nav>
-    </footer>
+    <div id="productsList" class="product-container"></div>
+  </main>
 
+  <footer>
+    <nav>
+      <a href="index.html" class="home">
+        <i class="bx bxs-home"></i>  Home
+      </a>
+      <a href="cart.html" class="cart">
+        <i class="bx bxs-cart"></i>  Cart
+      </a>
+      <a href="you.html" class="you">
+        <i class="bx bxs-user"></i> You
+      </a>
+      <a href="more.html" class="more">
+        <i class="bx bx-list-ul"></i> More
+      </a>
+    </nav>
+  </footer>
 
-    <script>
-        
+  <script>
+    function loadcart() {
+      fetch("http://localhost:8080/cart")
+        .then(response => response.json())
+        .then(cart => {
+          const productContainer = document.getElementById("productsList");
+          productContainer.innerHTML = "";
+          cart.forEach(carts => {
+            const userid = localStorage.getItem("userid");
+            if (userid == carts.userId) {
+              const productId = carts.productId;
+              if (!productId) {
+                productContainer.innerHTML = `<p>⚠️ Error: Product ID is missing.</p>`;
+                return;
+              }
 
-        
-        
-
-        function loadcart() {
-            fetch("http://localhost:8080/cart")
-                .then(response => response.json())
-                .then(cart => {
-                    
-                    const productContainer = document.getElementById("productsList");
-                    productContainer.innerHTML = "";
-                    cart.forEach(carts => {
-                        
-                         
-                         const userid=localStorage.getItem("userid");
-                         if(userid==carts.userId){
-                             
-                              
-                                 const productId =carts.productId ;
-                                 
-
-                                 if (!productId) {
-                                     document.getElementById("productsList").innerHTML = `<p>Error: Product ID is missing.</p>`;
-                                     return;
-                                 }
-
-                                 fetch(`http://localhost:8080/${productId}`)
-                                     .then(response => {
-                                         if (!response.ok) {
-                                             throw new Error('Network response was not ok');
-                                         }
-                                         return response.json();
-                                     })
-                                     .then(product => {
-                                         
-                                         
-
-                                  const productDetails = `
-                                <a href="pro.html?id=${product.id}" >
-                                <div class="product-card">
-                                    <h3>${product.name}</h3>
-                                    
-                                    <p>Price: Rs.${product.price}</p>
-                                    <p>Quantity: ${product.quantity}</p>
-                                    <img src="${product.imageUrl}" alt="${product.name}">
-                                </div> 
-                            </a>`;
-                                    productContainer.innerHTML += productDetails;
-                                     })
-                                     .catch(error => {
-                                         document.getElementById("productsList").innerHTML = `<p>Error loading product details: ${error.message}</p>`;
-                                     });
-                                   
-
-                             }
-
-
-                         
-
-
-                    });
+              fetch(`http://localhost:8080/${productId}`)
+                .then(response => {
+                  if (!response.ok) throw new Error('Network response was not ok');
+                  return response.json();
                 })
-                .catch(error => console.error("Error:", error));
-        }
+                .then(product => {
+                  const productDetails = `
+                    <a href="pro.html?id=${product.id}">
+                      <div class="product-card">
+                        <img src="${product.imageUrl}" alt="${product.name}" />
+                        <h3>${product.name} 🛍️</h3>
+                        <p>💰 Price: Rs.${product.price}</p>
+                        <p>📦 Quantity: ${product.quantity}</p>
+                      </div>
+                    </a>`;
+                  productContainer.innerHTML += productDetails;
+                })
+                .catch(error => {
+                  productContainer.innerHTML = `<p>❌ Error loading product details: ${error.message}</p>`;
+                });
+            }
+          });
+        })
+        .catch(error => console.error("❌ Error:", error));
+    }
 
-        window.onload = loadcart;
-
-
-    </script>
+    window.onload = loadcart;
+  </script>
 </body>
-
 </html>

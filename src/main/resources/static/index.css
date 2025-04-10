@@ -1,172 +1,195 @@
-/* Reset some default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-a {
-    text-decoration: none;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('https://t4.ftcdn.net/jpg/07/64/55/75/360_F_764557526_HlwV6rYpIxrfhrmlpTzl74INFoMmJs9Z.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: #333;
     display: flex;
     flex-direction: column;
-    /* Stack header, main, and footer vertically */
     min-height: 100vh;
-    /* Ensure the body takes at least the full height of the viewport */
-}
-
-/* Header styles */
-header {
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  header {
     position: fixed;
-    /* Fix the header at the top */
     top: 0;
     left: 0;
     right: 0;
-    background-color: #007bff;
+    background: linear-gradient(to right, #fc466b, #3f5efb);
     color: white;
     padding: 20px;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
+    justify-content: space-between;
     z-index: 1000;
-    /* Ensure the header is above other content */
-}
-
-header .headis {
-    display: flex;
-    width: 93%;
-    align-items: center;
-    justify-content: center;
-}
-
-.headis h1 {
-    margin-bottom: 8px;
-}
-
-nav {
-    margin-top: 10px;
-}
-
-/* Main content styles */
-main {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideDown 1s ease-out;
+  }
+  
+  .headis h1 {
+    font-size: 24px;
+    animation: bounceIn 1s ease-out;
+  }
+  
+  @keyframes bounceIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    60% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes slideDown {
+    from { top: -100px; }
+    to { top: 0; }
+  }
+  
+  main {
     flex: 1;
-    /* Allow main to grow and fill available space */
-    padding: 80px 20px 20px;
-    /* Add top padding to avoid overlap with fixed header */
-    overflow-y: auto;
-    /* Enable scrolling if content overflows */
-}
-
-h2 {
+    padding: 100px 20px 80px;
+    backdrop-filter: blur(5px);
+    animation: mainFadeSlideIn 1.2s ease-in-out both;
+  }
+  
+  @keyframes mainFadeSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+  h2 {
     text-align: center;
-    margin-bottom: 20px;
-}
-
-h3 {
-    color: #050404;
-}
-
-/* Button styles */
-button {
-    background-color: #28a745;
+    color: #dfdbe4;
+    font-size: 30px;
+    margin-bottom: 30px;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  button {
+    background: linear-gradient(to right, #ff6a00, #ee0979);
     color: white;
     border: none;
-    padding: 10px 15px;
-    margin: 5px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-/* Product container styles */
-.product-container {
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(to right, #ee0979, #ff6a00);
+  }
+  
+  .product-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-}
-
-/* Product card styles */
-.product-card {
-    
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    width: 200px;
-    height: 300px;
+    gap: 30px;
+  }
+  
+  .product-card {
+    background: linear-gradient(135deg, #ffffff, #dff9fb);
+    border-radius: 20px;
+    padding: 20px;
+    width: 220px;
+    height: 320px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.product-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.product-card img {
-    margin-top: 5px;
-    max-width: 100%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s, box-shadow 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-10px) rotate(-1deg);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .product-card img {
+    width: 100%;
     height: 150px;
-    border-radius: 5px;
-}
-
-/* Footer styles */
-footer {
-    
-    position:fixed;
-    /* Fix the footer at the bottom */
+    object-fit: contain;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+  
+  footer {
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #007bff;
+    background: linear-gradient(to right, #3f5efb, #fc466b);
     color: white;
+    padding: 10px 0;
     text-align: center;
-    justify-content: flex-start;
-    
-}
-
-footer nav{
-    margin: 0;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    animation: slideUp 1s ease-in-out;
+  }
+  
+  @keyframes slideUp {
+    from { bottom: -100px; }
+    to { bottom: 0; }
+  }
+  
+  footer nav {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
-}
-
-nav a{
-    height: 100%;
-    width: 25%;
-    padding: 10px;
-    margin: 3px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: #ddd;
-    font-size: 20px;
-    color: #050404;
-}
-
-
-
-
-/* Responsive styles */
-@media (max-width: 600px) {
+  }
+  
+  footer nav a {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  footer nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+  
+  footer nav i {
+    font-size: 24px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
     .product-card {
-        width: 100%;
+      width: 90%;
+      height: auto;
     }
-
+  
     button {
-        width: 100%;
-        margin: 5px 0;
+      width: 100%;
     }
-}
+  
+    footer nav a {
+      font-size: 12px;
+    }
+  }
+  

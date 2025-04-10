@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+    color: #333;
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #ff6a00, #ee0979);
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.8s ease-in-out;
+}
+
+
+main {
+    padding-top: 60px; /* adds space for fixed header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.product-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+    margin-top: 30px;
+    text-align: center;
+    animation: popUp 0.9s ease;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: scale(1.02);
+}
+
+.product-card img {
+    width: 50%;
+    max-height: 300px;
+    
+    border-radius: 15px;
+    margin-bottom: 20px;
+    transition: transform 0.5s;
+}
+
+.product-card img:hover {
+    transform: scale(1.05) rotate(1deg);
+}
+
+.product-card h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.price, .quantity {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.desc {
+    font-size: 1rem;
+    margin-top: 10px;
+    color: #555;
+}
+
+.action-buttons {
+    margin: 25px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    background: linear-gradient(to right, #f12711, #f5af19);
+    border: none;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+button:hover {
+    background: linear-gradient(to right, #f5af19, #f12711);
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #444;
+    animation: fadeIn 2s ease;
+}
+
+.error {
+    color: red;
+    margin-top: 15px;
+    font-weight: bold;
+    animation: shake 0.4s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popUp {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes shake {
+    0% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}

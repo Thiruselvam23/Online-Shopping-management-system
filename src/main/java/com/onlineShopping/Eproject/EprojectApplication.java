@@ -22,17 +22,17 @@ public class EprojectApplication {
     public ApplicationRunner runFrontend() {
         return args -> {
             try {
-                String url = "file:///D:/DBMS/project%20files/Eproject/src/main/resources/static/index.html";
+                String url = "file:///C:\\Users\\SSN\\EPROJECT\\EPROJECT\\src\\main\\resources\\static/index.html";
                 ProcessBuilder builder = new ProcessBuilder();
                 
                 if (System.getProperty("os.name").toLowerCase().contains("win")) {
                     // Windows
                     builder.command("rundll32", "url.dll,FileProtocolHandler", url);
                 } else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-                    // macOS
+                    
                     builder.command("open", url);
                 } else {
-                    // Linux
+                    
                     builder.command("xdg-open", url);
                 }
                 

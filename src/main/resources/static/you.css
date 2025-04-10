@@ -1,245 +1,372 @@
-/* Reset some default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-a {
-    text-decoration: none;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('https://t4.ftcdn.net/jpg/07/74/24/81/360_F_774248149_hpgn8Gbk4P44UyRJsUzuQJAzLE0kf6GL.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: #333;
     display: flex;
     flex-direction: column;
-    /* Stack header, main, and footer vertically */
     min-height: 100vh;
-    /* Ensure the body takes at least the full height of the viewport */
-}
-
-/* Header styles */
-header {
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Header */
+  header {
     position: fixed;
-    /* Fix the header at the top */
     top: 0;
     left: 0;
     right: 0;
-    background-color: #007bff;
+    background: linear-gradient(to right, #fc466b, #3f5efb);
     color: white;
     padding: 20px;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
+    justify-content: space-between;
     z-index: 1000;
-    /* Ensure the header is above other content */
-}
-
-.headis {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideDown 1s ease-out;
+    height: 90px;
+  }
+  
+  /* User Info Section */
+  .headis {
     display: flex;
-    flex-direction: column;
-    /* Stack user icon and user ID vertically */
     align-items: center;
-    /* Center items horizontally */
-    width: 93%;
-}
-
-.headis .user-icon {
-    width: 50px;
-    /* Width of the circle */
-    height: 50px;
-    /* Height of the circle */
-    background-color: #28a745;
-    /* Background color for the circle */
+    gap: 12px;
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+    transition: all 0.4s ease-in-out;
+    animation: userSlideFadeIn 1.5s ease-out;
+  }
+  
+  .headis:hover {
+    transform: scale(1.05);
+  }
+  
+  .user-icon {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at 30% 30%, #00f0ff, #0a58ca);
     border-radius: 50%;
-    /* Make it a circle */
     display: flex;
-    justify-content: center;
-    /* Center the initial */
     align-items: center;
-    /* Center the initial */
+    justify-content: center;
     color: white;
-    /* Text color */
-    font-size: 24px;
-    /* Font size for the initial */
+    font-size: 30px;
     font-weight: bold;
-    /* Make the initial bold */
-    margin-bottom: 5px;
-    /* Space below the circle */
-}
-
-.user-id {
-    font-size: 14px;
-    /* Font size for the user ID */
-    color: #333;
-    /* Color for the user ID text */
-}
-
-nav {
-    margin-top: 10px;
-}
-
-/* Main content styles */
-main {
-    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 40px rgba(0, 240, 255, 0.6);
+    animation: pulseGlow 2s infinite ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .user-icon:hover {
+    transform: rotate(8deg) scale(1.1);
+  }
+  
+  .user-id {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    text-shadow: 0 0 5px #00f0ff, 0 0 10px #0a58ca, 0 0 15px #001aff;
+    animation: textWaveGlow 4s infinite ease-in-out;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 40px rgba(0, 240, 255, 0.6);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(0, 240, 255, 1), 0 0 60px rgba(0, 240, 255, 0.9);
+    }
+  }
+  
+  @keyframes textWaveGlow {
+    0%, 100% {
+      text-shadow: 0 0 5px #00f0ff, 0 0 10px #0a58ca;
+    }
+    50% {
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #0080ff;
+    }
+  }
+  
+  @keyframes userSlideFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+    
+  /* Main */
+  main {
     flex: 1;
-    /* Allow main to grow and fill available space */
-    padding: 80px 20px 20px;
-    /* Add top padding to avoid overlap with fixed header */
-    overflow-y: auto;
-    /* Enable scrolling if content overflows */
-    flex-direction: row;
-}
-
-h2 {
+    padding: 100px 20px 80px;
+    backdrop-filter: blur(5px);
+    animation: mainFadeSlideIn 1.2s ease-in-out both;
+  }
+  
+  @keyframes mainFadeSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  h2 {
     text-align: center;
-    margin-bottom: 20px;
-}
+    color: #dfdbe4;
+    font-size: 30px;
+    margin-bottom: 30px;
+    animation: fadeIn 1.5s ease-in-out;
+  }
 
-h3 {
-    color: #050404;
-}
-
-/* Button styles */
-button {
-    background-color: #28a745;
+  p{
+    color: #080707;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Buttons */
+  button {
+    background: linear-gradient(to right, #ff6a00, #ee0979);
     color: white;
     border: none;
-    padding: 10px 15px;
-    margin: 5px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-/* Product container styles */
-.product-container {
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(to right, #ee0979, #ff6a00);
+  }
+  
+  /* Product Cards */
+  .product-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-}
-
-/* Product card styles */
-.product-card {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    width: 200px;
+    gap: 30px;
+  }
+  
+  .product-card {
+    background: linear-gradient(135deg, #ffffff, #dff9fb);
+    border-radius: 20px;
+    padding: 20px;
+    width: 220px;
+    height: 320px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.product-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.product-card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-/* Order card styles */
-.order-card {
-    background-color: white;
-    /* Background color for the order card */
-    border: 1px solid #ddd;
-    /* Light border */
-    border-radius: 5px;
-    /* Rounded corners */
-    padding: 15px;
-    /* Padding inside the card */
-    width: 300px;
-    /* Fixed width for the order card */
-    text-align: left;
-    /* Align text to the left */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow */
-    transition: transform 0.2s, box-shadow 0.2s;
-    /* Transition effects */
-    margin: 10px;
-    /* Space around each order card */
-}
-
-.order-card:hover {
-    transform: scale(1.02);
-    /* Slightly scale up on hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* Darker shadow on hover */
-}
-
-/* Order details styles */
-.order-card p {
-    margin: 5px 0;
-    /* Space between paragraphs */
-    font-size: 14px;
-    /* Font size for order details */
-    color: #333;
-    /* Text color */
-}
-
-/* Strong text styles for labels */
-.order-card p strong {
-    color: #007bff;
-    /* Color for labels */
-}
-
-/* Footer styles */
-footer {
-
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s, box-shadow 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-10px) rotate(-1deg);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+  
+  /* Footer */
+  footer {
     position: fixed;
-    /* Fix the footer at the bottom */
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #007bff;
+    background: linear-gradient(to right, #3f5efb, #fc466b);
     color: white;
+    padding: 10px 0;
     text-align: center;
-    justify-content: flex-start;
-
-}
-
-footer nav {
-    margin: 0;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    animation: slideUp 1s ease-in-out;
+  }
+  
+  @keyframes slideUp {
+    from { bottom: -100px; }
+    to { bottom: 0; }
+  }
+  
+  footer nav {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
-}
-
-nav a {
-    height: 100%;
-    width: 25%;
-    padding: 10px;
-    margin: 3px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: #ddd;
-    font-size: 20px;
-    color: #050404;
-}
-
-
-
-
-/* Responsive styles */
-@media (max-width: 600px) {
+  }
+  
+  footer nav a {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  footer nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+  
+  footer nav i {
+    font-size: 24px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
     .product-card {
-        width: 100%;
+      width: 90%;
+      height: auto;
     }
-
+  
     button {
-        width: 100%;
-        margin: 5px 0;
+      width: 100%;
     }
-}
+  
+    footer nav a {
+      font-size: 12px;
+    }
+  }
+  .order-card {
+    background: linear-gradient(145deg, #ffffff, #e6e9f0);
+    border-radius: 22px;
+    width: 360px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(63, 94, 251, 0.2), 0 5px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: fadeInOrder 0.8s ease-in-out;
+    border: 1px solid rgba(63, 94, 251, 0.15);
+    backdrop-filter: blur(4px);
+  }
+  
+  .order-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(63, 94, 251, 0.3), 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header */
+  .order-card-header {
+    background: linear-gradient(90deg, #3f5efb, #fc466b, #00c9ff);
+    color: #fff;
+    padding: 18px 20px;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.5px;
+  }
+  
+  .order-card-icon {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 5px;
+    object-fit: contain;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  }
+  
+  /* Body */
+  .order-card-content {
+    padding: 22px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-size: 16px;
+    line-height: 1.6;
+    position: relative;
+  }
+  
+  .order-card-content p {
+    margin: 0;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .order-card-content p i {
+    color: #fc466b;
+    font-size: 16px;
+  }
+  
+  .order-card-content p span {
+    font-weight: 700;
+    color: #000;
+  }
+  
+  /* Footer */
+  .order-card a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    background: linear-gradient(to right, #fc466b, #3f5efb);
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+  }
+  
+  .order-card a:hover {
+    background: linear-gradient(to right, #3f5efb, #00c9ff);
+    transform: scale(1.02);
+  }
+  
+  /* Additional icons */
+  .icon-color {
+    color: #fc466b;
+  }
+  
+  /* Animation */
+  @keyframes fadeInOrder {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  

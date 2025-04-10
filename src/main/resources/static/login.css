@@ -1,95 +1,141 @@
-body {
-    font-family: Arial, sans-serif;
-    /* Set a clean font for the body */
-    background-color: #f4f4f4;
-    /* Light background color */
-    display: flex;
-    /* Use flexbox for centering */
-    justify-content: center;
-    /* Center horizontally */
-    align-items: center;
-    /* Center vertically */
-    height: 100vh;
-    /* Full viewport height */
+* {
     margin: 0;
-    /* Remove default margin */
-}
-
-.login-container {
-    background-color: #fff;
-    /* White background for the container */
-    padding: 20px;
-    /* Padding inside the container */
-    border-radius: 8px;
-    /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow */
-    width: 300px;
-    /* Fixed width for the container */
-}
-
-h2 {
-    margin-bottom: 20px;
-    /* Space below the heading */
-    color: #333;
-    /* Darker color for the heading */
-    text-align: center;
-    /* Center the heading */
-}
-
-form {
-    display: flex;
-    /* Use flexbox for form layout */
-    flex-direction: column;
-    /* Stack inputs vertically */
-}
-
-input {
-    width: 100%;
-    /* Full width inputs */
-    padding: 10px;
-    /* Padding inside inputs */
-    margin: 10px 0;
-    /* Space between inputs */
-    border: 1px solid #ccc;
-    /* Light border */
-    border-radius: 4px;
-    /* Rounded corners for inputs */
+    padding: 0;
     box-sizing: border-box;
-    /* Include padding and border in width */
-}
-
-button {
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  body, html {
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  /* Left panel with background image and blur */
+  .left-panel {
+    flex: 1;
+    background-image: url("https://i2.pickpik.com/photos/662/44/34/hill-fog-nature-mountain-preview.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .left-panel .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    /* Full width button */
-    padding: 10px;
-    /* Padding inside button */
-    background-color: #007BFF;
-    /* Blue background for button */
+    height: 100%;
+    background-color: rgba(20, 20, 20, 0.5);
+    backdrop-filter: blur(3px);
     color: white;
-    /* White text color */
-    border: none;
-    /* Remove default border */
-    border-radius: 4px;
-    /* Rounded corners for button */
-    cursor: pointer;
-    /* Pointer cursor on hover */
-    font-size: 16px;
-    /* Font size for button */
-    margin-top: 10px;
-    /* Space above the button */
-}
-
-button:hover {
-    background-color: #0056b3;
-    /* Darker blue on hover */
-}
-
-#errorMessage {
-    color: red;
-    /* Red color for error messages */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    /* Center the error message */
+    padding: 2rem;
+  }
+  
+  .left-panel h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .left-panel p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+  
+  /* Right panel with transparent form */
+  .right-panel {
+    flex: 1;
+    background: rgba(18, 13, 13, 0.05);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .form-box {
+    background: rgba(9, 7, 7, 0.15);
+    padding: 2rem;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    color: #fff;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    animation: fadeIn 1.2s ease-in-out;
+  }
+  
+  .form-box h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+  
+  /* Inputs and button styling */
+  input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(240, 234, 234, 0.867);
+    color:rgb(10, 10, 10);
+    font-size: 1rem;
+  }
+  
+  input::placeholder {
+    color: #0b0b0b;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
     margin-top: 10px;
-    /* Space above the error message */
-}
+    background: linear-gradient(135deg, #8e2de2, #4a00e0);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+  }
+  
+  a {
+    color: #ddd;
+    text-decoration: underline;
+  }
+  
+  .error-message {
+    text-align: center;
+    color: #ff4f4f;
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
