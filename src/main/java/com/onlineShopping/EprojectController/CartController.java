@@ -22,5 +22,9 @@ public class CartController {
     public ResponseEntity<List<Cart>> getAllCarts(){
         return ResponseEntity.ok(cartService.getAllCarts());
     }
+
+    public ResponseEntity<?> DeleteCart(Long cartId){
+        return cartService.DeleteCart(cartId);
+    }
     
 }

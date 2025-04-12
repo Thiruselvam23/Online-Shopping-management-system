@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendor Login</title>
+    <title> Login</title>
     <link rel="stylesheet" href="login2.css">
 </head>
 <body>
@@ -36,13 +36,14 @@
                 if (response.ok) {
                     alert("Login successful!");
                     window.location.href = "index.html";
+                    localStorage.setItem("userid", userId);
                 } else {
                     alert("Invalid user or password.");
                 }
             })
             .catch(error => console.error("Error:", error));
 
-            localStorage.setItem("userid", userId);
+            
         });
     </script>
 </body>

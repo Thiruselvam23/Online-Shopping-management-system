@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🛒 Cart - Online Shopping</title>
+  <title>🛒 Cart - ShopEase</title>
   <link rel="stylesheet" href="cart.css" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
 </head>
@@ -49,7 +49,7 @@
                 productContainer.innerHTML = `<p>⚠️ Error: Product ID is missing.</p>`;
                 return;
               }
-
+  
               fetch(`http://localhost:8080/${productId}`)
                 .then(response => {
                   if (!response.ok) throw new Error('Network response was not ok');
@@ -57,14 +57,15 @@
                 })
                 .then(product => {
                   const productDetails = `
-                    <a href="pro.html?id=${product.id}">
-                      <div class="product-card">
+                    <div class="product-card">
+                      <a href="pro.html?id=${product.id}">
                         <img src="${product.imageUrl}" alt="${product.name}" />
                         <h3>${product.name} 🛍️</h3>
                         <p>💰 Price: Rs.${product.price}</p>
                         <p>📦 Quantity: ${product.quantity}</p>
-                      </div>
-                    </a>`;
+                      </a>
+                      <button class="delete-btn" onclick="deleteCartItem(${carts.cartID})">🗑️ Remove</button>
+                    </div>`;
                   productContainer.innerHTML += productDetails;
                 })
                 .catch(error => {
@@ -75,8 +76,28 @@
         })
         .catch(error => console.error("❌ Error:", error));
     }
+  
+    function deleteCartItem(cartId) {
+  console.log(cartId);
+  fetch(`http://localhost:8080/DeleteCart/${cartId}`, {
+    method: "GET"
+  })
+  .then(response => {
+    if (!response.ok) throw new Error("Failed to delete cart item");
+    return response.json();
+  })
+  .then(result => {
+    alert("🗑️ " + result.message); // show message from backend
+    loadcart(); // Reload the cart
+  })
+  .catch(error => {
+    console.error("❌ Deletion Error:", error);
+    alert("❌ Failed to remove item.");
+  });
+}
 
+  
     window.onload = loadcart;
   </script>
-</body>
+  
 </html>

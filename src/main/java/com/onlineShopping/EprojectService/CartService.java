@@ -1,6 +1,8 @@
 package com.onlineShopping.EprojectService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,4 +23,11 @@ public class CartService {
     public List<Cart> getAllCarts() {
 	    return cartRepo.findAll();
 	}
+
+    public ResponseEntity<?> DeleteCart(Long cartID){
+        cartRepo.deleteById(cartID);
+         Map<String, String> response = new HashMap<>();
+        response.put("message", "Deleted successfully");
+        return ResponseEntity.ok(response);
+    }
 }

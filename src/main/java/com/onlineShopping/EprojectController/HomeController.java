@@ -135,6 +135,10 @@ public class HomeController {
         return cartcont.getAllCarts();
     }
 
+	@GetMapping("/DeleteCart/{cartId}")
+	public ResponseEntity<?> DeleteCart(@PathVariable Long cartId){
+		return cartcont.DeleteCart(cartId);
+	}
 	@PostMapping("/order")
 	public ResponseEntity<?> postMethodName(@RequestBody Order order) {
 		return ordercont.setOrder(order);
