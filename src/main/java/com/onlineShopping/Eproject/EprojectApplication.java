@@ -22,11 +22,8 @@ public class EprojectApplication {
     public ApplicationRunner runFrontend() {
         return args -> {
             try {
-<<<<<<< HEAD
                 String url = "\"D:\\DBMS\\project files\\Online-Shopping-management-system-main\\Online-Shopping-management-system-main\\src\\main\\resources\\static\\index.html\"";
-=======
                 String url = "file:///C:\\Users\\SSN\\EPROJECT\\EPROJECT\\src\\main\\resources\\static/index.html";
->>>>>>> c2fabfb7c86d0cc9d30502e8f886eabba2cb8349
                 ProcessBuilder builder = new ProcessBuilder();
                 
                 if (System.getProperty("os.name").toLowerCase().contains("win")) {
