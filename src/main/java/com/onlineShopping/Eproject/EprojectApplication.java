@@ -22,7 +22,7 @@ public class EprojectApplication {
     public ApplicationRunner runFrontend() {
         return args -> {
             try {
-                String url = "\Online-Shopping-management-system-main\\src\\main\\resources\\static\\index.html\"";
+                String url = "\"D:\\DBMS\\project files\\Online-Shopping-management-system-main\\Online-Shopping-management-system-main\\src\\main\\resources\\static\\index.html\"";
                 ProcessBuilder builder = new ProcessBuilder();
                 
                 if (System.getProperty("os.name").toLowerCase().contains("win")) {
