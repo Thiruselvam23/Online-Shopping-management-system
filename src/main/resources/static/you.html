@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Orders - ShopEase</title>
+  <link rel="stylesheet" href="you.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+  <header>
+    <div class="headis">
+      <div class="user-icon">
+        <span id="userInitial">G</span>
+      </div>
+      <div class="user-id" id="userIdDisplay">Guest</div>
+    </div>
+    <nav id="login"></nav>
+  </header>
+
+  <main>
+    <h2>My Orders</h2>
+    <div id="productsList" class="product-container"></div>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="index.html"><i class="bx bxs-home"></i> Home</a>
+      <a href="cart.html"><i class="bx bxs-cart"></i> Cart</a>
+      <a href="you.html"><i class="bx bxs-user"></i> You</a>
+      <a href="more.html"><i class="bx bx-list-ul"></i> More</a>
+    </nav>
+  </footer>
+
+  <script>
+    const userId = localStorage.getItem("userid");
+    const login = document.getElementById("login");
+    const userInitial = document.getElementById("userInitial");
+    const userIdDisplay = document.getElementById("userIdDisplay");
+
+    if (!userId || userId === "null") {
+      login.innerHTML = `<button class="loginUser" onclick="goToUser()">Login</button>`;
+    } else {
+      const initial = userId.charAt(0).toUpperCase();
+      userInitial.textContent = initial;
+      userIdDisplay.textContent = userId;
+      login.innerHTML = `<button class="loginUser" onclick="Logout()">LogOut</button>`;
+    }
+
+    function goToUser() {
+      window.location.href = "login2.html";
+    }
+
+    function Logout() {
+      localStorage.setItem("userid", "null");
+      window.location.href = "you.html";
+    }
+
+    function loadProducts() {
+      fetch(`http://localhost:8080/orders/${userId}`)
+        .then((response) => response.json())
+        .then((orders) => {
+          const productContainer = document.getElementById("productsList");
+          productContainer.innerHTML = "";
+
+          if (orders.length === 0) {
+            productContainer.innerHTML = "<p>No orders found.</p>";
+            return;
+          }
+
+          orders.forEach((order) => {
+            const orderCard = document.createElement("div");
+            orderCard.classList.add("order-card");
+
+            orderCard.innerHTML = `
+  <div class="order-card-header">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwfynJKifWbJOiDewH75IPB19yLC5dfvWpDw&s" alt="Delivery" class="order-card-icon">
+    Order #${order.orderid}
+  </div>
+  <div class="order-card-content">
+    <p><i class="fas fa-calendar-day icon-color"></i> <span>Date:</span> ${order.date}</p>
+    <p><i class="fas fa-rupee-sign icon-color"></i> <span>Total:</span> ₹${order.totalamount}</p>
+    <p><i class="fas fa-box icon-color"></i> <span>Product ID:</span> ${order.productId}</p>
+  </div>
+  <a href="pro.html?id=${order.productId}">
+    <i class="fas fa-link icon-color"></i> View Product
+  </a>
+`;
+            productContainer.appendChild(orderCard);
+          });
+        })
+        .catch((error) => console.error("Error fetching orders:", error));
+    }
+
+    window.onload = loadProducts;
+  </script>
+</body>
+
+</html>

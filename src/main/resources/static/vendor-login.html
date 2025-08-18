@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Login</title>
+    <link rel="stylesheet" href="login2.css">
+</head>
+<body>
+    <div class="login-container">
+        <form id="loginForm">
+            <div class="avatar"></div>
+            <input type="text" id="vendorId" placeholder="👤 Vendor ID" required>
+            <input type="password" id="password" placeholder="🔒 Password" required>
+            
+            <button type="submit">LOGIN</button>
+            <p>Don't have an account? <a href="login.html">Register here</a></p>
+        </form>
+    </div>
+
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const vendorId = document.getElementById("vendorId").value;
+                const password = document.getElementById("password").value;
+
+                fetch("http://localhost:8080/vendorlogin", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ vendorId, password }) // Ensure JSON format
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            localStorage.setItem("vendorid",vendorId);
+                            alert("Login successful!");
+                            window.location.href = "index.html"; // Redirect to home page
+                        } else {
+                            alert("Invalid credentials. Please try again.");
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+            });
+
+    </script>
+</body>
+
+</html>

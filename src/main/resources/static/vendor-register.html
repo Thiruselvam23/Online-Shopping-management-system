@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register 🛍️</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <div class="overlay">
+        <h1>🛍️ ShopEase</h1>
+        <p>Capturing Moments, Creating Memories</p>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="form-box">
+        <h2>🚀 Create Account</h2>
+        <form id="registerForm">
+          
+          <input type="text" id="name" placeholder="👤 Name" required />
+          <input type="password" id="password" placeholder="🔒 Password" required minlength="6" />
+          <input type="email" id="email" placeholder="📧 Email" required />
+          <input type="tel" id="phoneNumber" placeholder="📞 Phone Number" required pattern="[0-9]{10}" />
+          <button type="submit">✨ Register Now</button>
+        </form>
+        <p id="errorMessage" class="error-message"></p>
+        <p>Already registered? <a href="vendor-login.html">🔐 Login</a></p>
+        <p>Go Home<a href="index.html">  Home</a></p>
+      </div>
+    </div>
+  </div>
+
+
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            
+              
+              const  vendorname= document.getElementById("name").value;
+              const  email= document.getElementById("email").value;
+               const password= document.getElementById("password").value;
+               const phonenumber= document.getElementById("phoneNumber").value;
+            
+            if (!/^\d{10}$/.test(phonenumber)) {
+                errorMessage.innerText = "❌ Phone number must be 10 digits.";
+                return;
+             }
+
+            fetch("http://localhost:8080/vendor", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    vendorid: vendorname,
+                    password: password,
+                    email: email,
+                    phoneNumber: phonenumber,
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => { throw new Error(text); });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert("register successful! " );
+                    window.location.href = "index.html";
+                })
+                .catch(error => {
+                    document.getElementById("errorMessage").innerText = "register failed: " + error.message;
+                });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  body, html {
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  /* Left panel with background image and blur */
+  .left-panel {
+    flex: 1;
+    background-image: url("https://i2.pickpik.com/photos/662/44/34/hill-fog-nature-mountain-preview.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .left-panel .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20, 20, 20, 0.5);
+    backdrop-filter: blur(3px);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .left-panel h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .left-panel p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+  
+  /* Right panel with transparent form */
+  .right-panel {
+    flex: 1;
+    background: rgba(18, 13, 13, 0.05);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .form-box {
+    background: rgba(9, 7, 7, 0.15);
+    padding: 2rem;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    color: #fff;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    animation: fadeIn 1.2s ease-in-out;
+  }
+  
+  .form-box h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+  
+  /* Inputs and button styling */
+  input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(240, 234, 234, 0.867);
+    color:rgb(10, 10, 10);
+    font-size: 1rem;
+  }
+  
+  input::placeholder {
+    color: #0b0b0b;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: linear-gradient(135deg, #8e2de2, #4a00e0);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+  }
+  
+  a {
+    color: #ddd;
+    text-decoration: underline;
+  }
+  
+  .error-message {
+    text-align: center;
+    color: #ff4f4f;
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
